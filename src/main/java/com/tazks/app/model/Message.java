@@ -3,22 +3,17 @@ package com.tazks.app.model;
 import lombok.Data;
 
 import javax.persistence.Entity;
+import javax.persistence.Id;
 import java.util.Date;
+import java.util.UUID;
 
 @Data
 @Entity
-public class Message extends BaseEntity {
+public class Message {
 
+    @Id
+    private UUID id;
     private Date dateTime;
     private String message;
-    private Person sender;
-    private Person recipient;
 
-    public Message(Long id, Date dateTime, String message, Person sender, Person recipient) {
-        super(id);
-        this.dateTime = dateTime;
-        this.message = message;
-        this.sender = sender;
-        this.recipient = recipient;
-    }
 }

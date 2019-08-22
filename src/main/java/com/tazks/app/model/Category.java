@@ -3,20 +3,21 @@ package com.tazks.app.model;
 import lombok.Data;
 
 import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import java.util.Set;
+import java.util.UUID;
 
 @Data
 @Entity
-public class Category extends BaseEntity {
+public class Category {
 
+    @Id
+    private UUID id;
     private String name;
     private Byte[] image;
+
+    @ManyToMany
     private Set<Handyman> handymen;
 
-    public Category(Long id, String name, Byte[] image, Set<Handyman> handymen) {
-        super(id);
-        this.name = name;
-        this.image = image;
-        this.handymen = handymen;
-    }
 }

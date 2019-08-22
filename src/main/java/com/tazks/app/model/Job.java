@@ -2,35 +2,32 @@ package com.tazks.app.model;
 
 import lombok.Data;
 
-import javax.persistence.Entity;
+import javax.persistence.*;
 import java.util.Date;
 import java.util.Set;
+import java.util.UUID;
 
 @Data
 @Entity
-public class Job extends BaseEntity {
+public class Job {
 
+    @Id
+    private UUID id;
     private Date dateTime;
     private int price;
     private String proposal;
+
+    @OneToOne
     private Category category;
+    @OneToOne
     private Address address;
+    @OneToOne
     private Rating rating;
+    @ManyToOne
     private Client client;
+    @ManyToOne
     private Handyman handyman;
+    @ManyToMany
     private Set<Message> messages;
 
-    public Job(Long id, Date dateTime, int price, String proposal, Category category, Address address, Rating rating,
-               Client client, Handyman handyman, Set<Message> messages) {
-        super(id);
-        this.dateTime = dateTime;
-        this.price = price;
-        this.proposal = proposal;
-        this.category = category;
-        this.address = address;
-        this.rating = rating;
-        this.client = client;
-        this.handyman = handyman;
-        this.messages = messages;
-    }
 }
