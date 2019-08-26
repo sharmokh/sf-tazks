@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Set;
-import java.util.UUID;
 
 @RestController
 @RequestMapping("/client")
@@ -24,24 +23,27 @@ public class ClientController {
         return clientService.findAll();
     }
 
-    @GetMapping("/{id}")
-    public Client getById(@PathVariable UUID id) {
-        return clientService.findByID(id);
+    @GetMapping("/{id}/show")
+    public Client getById(@PathVariable Long id) {
+        return clientService.findById(id);
     }
 
-    @PostMapping("/{id}")
-    public void addClient(@RequestBody Client client) {
+    @PostMapping("/new")
+    public String addClient(@RequestBody Client client) {
         clientService.save(client);
+        return "redirect:/client/" + client.getId() + "/show";
     }
 
-    @PutMapping("/{id}")
-    public void updateClient(@PathVariable UUID id, @RequestBody Client client) {
+    @PutMapping("/{id}/update")
+    public String updateClient(@PathVariable Long id, @RequestBody Client client) {
         client.setId(id);
         clientService.save(client);
+        return "redirect:/client" + client.getId() + "/show";
     }
 
-    @DeleteMapping("/{id}")
-    public void deleteClient(@PathVariable UUID id) {
+    @GetMapping("/{id}/delete")
+    public String deleteClient(@PathVariable Long id) {
         clientService.deleteById(id);
+        return "redirect:/client";
     }
 }

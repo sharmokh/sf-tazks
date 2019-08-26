@@ -1,14 +1,17 @@
 package com.tazks.app.model;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
 import java.util.Set;
-import java.util.UUID;
 
 @Data
 @Entity
+@NoArgsConstructor
+@EqualsAndHashCode(callSuper = false)
 public class Handyman extends Person {
 
     @ManyToMany
@@ -20,12 +23,4 @@ public class Handyman extends Person {
     @ManyToMany
     private Set<Message> messages;
 
-    public Handyman(UUID id, String firstName, String lastName, Set<Category> categories, Set<Job> jobs,
-                    Set<Rating> ratings, Set<Message> messages) {
-        super(id, firstName, lastName);
-        this.categories = categories;
-        this.jobs = jobs;
-        this.ratings = ratings;
-        this.messages = messages;
-    }
 }

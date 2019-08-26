@@ -5,11 +5,11 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
-import java.util.UUID;
+import java.util.Optional;
 
 @Repository
-public interface ClientRepository extends CrudRepository<Client, UUID> {
+public interface ClientRepository extends CrudRepository<Client, Long> {
 
-    Client findByLastName(String lastName);
+    Optional<Client> findByLastName(String lastName);
     List<Client> findByLastNameLikeIgnoreCase(String lastName);
 }

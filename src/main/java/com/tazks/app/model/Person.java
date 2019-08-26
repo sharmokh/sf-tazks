@@ -1,22 +1,20 @@
 package com.tazks.app.model;
 
-import lombok.Data;
+import lombok.*;
 
-import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
-import java.util.UUID;
 
 @Data
 @MappedSuperclass
-public class Person {
+@NoArgsConstructor
+@EqualsAndHashCode(callSuper = false)
+public class Person extends BaseEntity {
 
-    @Id
-    private UUID id;
     private String firstName;
     private String lastName;
 
-    public Person(UUID id, String firstName, String lastName) {
-        this.id = id;
+    public Person(Long id, String firstName, String lastName) {
+        super(id);
         this.firstName = firstName;
         this.lastName = lastName;
     }

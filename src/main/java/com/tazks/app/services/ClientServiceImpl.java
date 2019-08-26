@@ -5,9 +5,7 @@ import com.tazks.app.repositories.ClientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.HashSet;
-import java.util.Set;
-import java.util.UUID;
+import java.util.*;
 
 @Service
 public class ClientServiceImpl implements ClientService {
@@ -25,7 +23,7 @@ public class ClientServiceImpl implements ClientService {
         return clients;
     }
 
-    public Client findByID(UUID id) {
+    public Client findById(Long id) {
         return repository.findById(id)
                          .orElse(null);
     }
@@ -38,7 +36,7 @@ public class ClientServiceImpl implements ClientService {
         repository.delete(client);
     }
 
-    public void deleteById(UUID id) {
+    public void deleteById(Long id) {
         repository.deleteById(id);
     }
 }
