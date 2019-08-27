@@ -17,10 +17,8 @@ public class ClientServiceImpl implements ClientService {
         this.repository = repository;
     }
 
-    public Set<Client> findAll() {
-        Set<Client> clients = new HashSet<>();
-        repository.findAll().forEach(clients::add);
-        return clients;
+    public List<Client> findAll() {
+        return repository.findAll();
     }
 
     public Client findById(Long id) {

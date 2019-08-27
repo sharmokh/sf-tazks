@@ -7,9 +7,7 @@ import org.junit.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
-import java.util.HashSet;
-import java.util.Optional;
-import java.util.Set;
+import java.util.*;
 
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
@@ -32,11 +30,11 @@ public class ClientServiceImplTest {
 
     @Test
     public void testFindAll() {
-        HashSet clientData = new HashSet();
+        List<Client> clientData = new ArrayList<>();
         clientData.add(client);
 
         when(clientRepository.findAll()).thenReturn(clientData);
-        Set<Client> clients = clientService.findAll();
+        List<Client> clients = clientService.findAll();
 
         assertEquals(1, clients.size());
         verify(clientRepository, times(1)).findAll();

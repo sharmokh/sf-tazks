@@ -21,8 +21,9 @@ public class Client extends Person {
     private Set<Message> messages;
 
     @Builder
-    public Client(Long id, String firstName, String lastName, Set<Job> jobs, Set<Message> messages) {
-        super(id, firstName, lastName);
+    public Client(Long id, String firstName, String lastName, String email, String password,
+                  Set<Job> jobs, Set<Message> messages) {
+        super(id, firstName, lastName, email, password);
         this.jobs = jobs;
         this.messages = messages;
     }

@@ -1,10 +1,10 @@
 package com.tazks.app.services;
 
-import java.util.Set;
+import java.util.List;
 
 public interface CrudService<T, ID> {
 
-    Set<T> findAll();
+    List<T> findAll();
 
     T findById(ID id);
 

@@ -2,12 +2,15 @@ package com.tazks.app.controllers;
 
 import com.tazks.app.model.Client;
 import com.tazks.app.services.ClientService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Set;
 
-@RestController
+@Slf4j
+@Controller
 @RequestMapping("/client")
 public class ClientController {
 
@@ -19,26 +22,21 @@ public class ClientController {
     }
 
     @GetMapping
-    public Set<Client> getAllClients() {
-        return clientService.findAll();
+    public String listClientsPage(Model model) {
+        model.addAttribute("clients",clientService.findAll());
+        return "client/list";
     }
 
-    @GetMapping("/{id}/show")
-    public Client getById(@PathVariable Long id) {
-        return clientService.findById(id);
+    @GetMapping("/new")
+    public String newClient(Model model) {
+        model.addAttribute("client", new Client());
+        return "client/client_form";
     }
 
-    @PostMapping("/new")
-    public String addClient(@RequestBody Client client) {
-        clientService.save(client);
-        return "redirect:/client/" + client.getId() + "/show";
-    }
-
-    @PutMapping("/{id}/update")
-    public String updateClient(@PathVariable Long id, @RequestBody Client client) {
-        client.setId(id);
-        clientService.save(client);
-        return "redirect:/client" + client.getId() + "/show";
+    @GetMapping("/{id}/update")
+    public String getById(@PathVariable Long id, Model model) {
+        model.addAttribute("client", clientService.findById(id));
+        return "client/client_form";
     }
 
     @GetMapping("/{id}/delete")
@@ -46,4 +44,11 @@ public class ClientController {
         clientService.deleteById(id);
         return "redirect:/client";
     }
+
+    @PostMapping("/")
+    public String addClient(@ModelAttribute Client client) {
+        Client savedClient = clientService.save(client);
+        return "redirect:/client";
+    }
+
 }
