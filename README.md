@@ -1,5 +1,8 @@
 # Tazks
+
 A Handyman Service App
+
+[![CircleCI](https://circleci.com/gh/sharmokh/sf-tazks.svg?style=svg)](https://circleci.com/gh/sharmokh/sf-tazks)
 
 Considering the growing power of social apps such as Airbnb and Uber, this site is intended to support individuals with the ability to provide small services such as fixing a leaky facut or setting up a printer.
 
